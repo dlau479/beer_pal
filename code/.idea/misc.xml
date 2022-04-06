@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/activity_main_hub.xml" value="0.22" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/fragment_beer_display.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/fragment_home.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/fragment_nav_host.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/fragment_profile.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/fragment_settings.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/fragment_wishlist.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/nav_header.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/menu/drawer_list.xml" value="0.1796875" />
+        <entry key="..\:/Users/akuot/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/menu/navdrawer_menu.xml" value="0.1796875" />
         <entry key="..\:/depot/AK/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/activity_email_login.xml" value="0.33967391304347827" />
         <entry key="..\:/depot/AK/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/depot/AK/Documents/repos/finalproject-cs481-beerappteam/code/app/src/main/res/layout/activity_main_hub.xml" value="0.33967391304347827" />
