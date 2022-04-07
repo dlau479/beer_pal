@@ -42,7 +42,7 @@ class EmailLoginActivity : Activity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if(currentUser != null){ //there was a user previously signed in. must explicitly sign out for this to be null
-            goToMainHub()
+            goToMainMenu()
         }
     }
 
@@ -53,8 +53,9 @@ class EmailLoginActivity : Activity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
                     val user = auth.currentUser
-                    //todo: update ui to use user account details e.g. profile pics, maybe pass user to MainHub?
-                    goToMainHub()
+                    Toast.makeText(baseContext,"Welcome " + user!!.email,Toast.LENGTH_SHORT).show()
+                    //todo: update ui to use user account details e.g. profile pics, maybe pass user to MainMenu?
+                    goToMainMenu()
                 }
                 else {
                     // If sign in fails, display a message to the user.
@@ -72,8 +73,9 @@ class EmailLoginActivity : Activity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
-                    //todo: update ui to use user account details e.g. profile pics, maybe pass user to MainHub?
-                    goToMainHub()
+                    Toast.makeText(baseContext,"Welcome " + user!!.email,Toast.LENGTH_SHORT).show()
+                    //todo: update ui to use user account details e.g. profile pics, maybe pass user to MainMenu?
+                    goToMainMenu()
                 }
                 else {
                     // If sign in fails, display a message to the user.
@@ -93,7 +95,7 @@ class EmailLoginActivity : Activity() {
             }
     }
 
-    private fun goToMainHub(){
+    private fun goToMainMenu(){
         startActivity(Intent(this, MainMenu::class.java))
     }
 }
