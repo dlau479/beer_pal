@@ -94,6 +94,6 @@ class EmailLoginActivity : Activity() {
     }
 
     private fun goToMainHub(){
-        startActivity(Intent(this, MainHub::class.java))
+        startActivity(Intent(this, MainMenu::class.java))
     }
 }
