@@ -56,6 +56,11 @@ class SearchFragment : Fragment(), BeerRepositoryListener {
         recView.adapter = adapter
     }
 
+    private fun getData() {
+
+    }
+
+
     companion object {
         /**
          * Use this factory method to create a new instance of

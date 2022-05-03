@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:id="@+id/card_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/search_card"
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -18,24 +19,25 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/card_thumbnail"
-                android:layout_width="392dp"
-                android:layout_height="198dp"
+                android:layout_width="390dp"
+                android:layout_height="137dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/card_content_description_placeholder"
                 android:src="@drawable/beerpal"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"></ImageView>
 
             <TextView
                 android:id="@+id/card_title"
-                android:layout_width="205dp"
-                android:layout_height="40dp"
+                android:layout_width="174dp"
+                android:layout_height="41dp"
                 android:gravity="center|start"
                 android:lines="2"
                 android:paddingStart="6dp"
@@ -48,13 +50,14 @@
                 android:textSize="15dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/card_rating"
+                app:layout_constraintHorizontal_bias="0.055"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_thumbnail"></TextView>
 
             <TextView
                 android:id="@+id/card_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="392dp"
+                android:layout_height="127dp"
                 android:gravity="start"
                 android:lines="6"
                 android:paddingStart="6dp"
@@ -66,19 +69,45 @@
                 android:textColor="#4A4A4A"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card_title"></TextView>
+                app:layout_constraintTop_toBottomOf="@+id/card_rating"></TextView>
 
             <RatingBar
                 android:id="@+id/card_rating"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:layout_width="184dp"
-                android:layout_height="40dp"
+                android:layout_width="216dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="2dp"
                 android:contentDescription="@string/card_rating_content_description_placeholder"
                 android:foregroundGravity="center"
                 android:progressTint="#FFC107"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/card_brewery"
+                app:layout_constraintTop_toBottomOf="@+id/card_abv" />
+
+            <TextView
+                android:id="@+id/card_brewery"
+                android:layout_width="173dp"
+                android:layout_height="37dp"
+                android:paddingStart="6dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="6dp"
+                android:text="@string/card_brewery_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_title" />
+
+            <TextView
+                android:id="@+id/card_abv"
+                android:layout_width="64dp"
+                android:layout_height="42dp"
+                android:gravity="center"
+                android:paddingStart="6dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="6dp"
+                android:text="@string/card_abv_placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_thumbnail" />
 
