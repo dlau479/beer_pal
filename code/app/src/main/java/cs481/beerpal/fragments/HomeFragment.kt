@@ -47,7 +47,6 @@ class HomeFragment : Fragment() {
     private fun getData() {
         val db = FirebaseFirestore.getInstance()
 
-        //var beers:MutableList<Beer>
         var beers: MutableList<Beer> = mutableListOf<Beer>()
 
         val documents = db.collection("beers")
@@ -63,7 +62,7 @@ class HomeFragment : Fragment() {
                             brewery = document.data.getValue("brewery").toString(),
                             abv = document.data.getValue("abv").toString().toDouble(),
                             rating = document.data.getValue("avg_rating").toString().toFloat(),
-                            id = document.data.getValue("id") as Long,
+                            id = document.data.getValue("id") as Long
                         )
                         beers.add(beer)
                     }

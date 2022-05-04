@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -76,12 +76,15 @@
             <RatingBar
                 android:id="@+id/card_rating"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:layout_width="216dp"
+                android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_marginStart="2dp"
                 android:contentDescription="@string/card_rating_content_description_placeholder"
                 android:foregroundGravity="center"
+                android:indeterminate="false"
+                android:numStars="5"
                 android:progressTint="#FFC107"
+                android:stepSize="0.2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/card_brewery"
                 app:layout_constraintTop_toBottomOf="@+id/card_abv" />

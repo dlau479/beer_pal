@@ -3,31 +3,11 @@ package cs481.beerpal
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatRatingBar
 import androidx.recyclerview.widget.RecyclerView
-
-/*
-class CardAdapter(private val beers: List<Beer>)
-    : RecyclerView.Adapter<CardViewHolder>()
-{
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        val from = LayoutInflater.from(parent.context)
-        val binding = SearchCardCellBinding.inflate(from, parent, false)
-        return CardViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        holder.bindBeer(beers[position])
-    }
-
-    override fun getItemCount(): Int {
-        Log.e("CardAdapter", "getItemCount: ${beers.size}")
-        return beers.size
-    }
-}
-*/
 
 class CardAdapter(private val dataList: List<Beer>) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,11 +18,12 @@ class CardAdapter(private val dataList: List<Beer>) : RecyclerView.Adapter<CardA
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataList[position]
+        //image set view .setImageResource()
         holder.b_name.text = item.title
         holder.b_desc.text = item.description
         holder.b_rating.rating = item.rating
         holder.b_brewery.text = item.brewery
-        holder.b_abv.text = item.abv.toString()
+        holder.b_abv.text = item.abv.toString().plus("%")
     }
 
     override fun getItemCount(): Int {
@@ -51,10 +32,9 @@ class CardAdapter(private val dataList: List<Beer>) : RecyclerView.Adapter<CardA
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val b_name: TextView = itemView.findViewById(R.id.card_title)
         val b_desc: TextView = itemView.findViewById(R.id.card_description)
-        val b_rating: AppCompatRatingBar = itemView.findViewById(R.id.card_rating)
+        val b_rating: RatingBar = itemView.findViewById(R.id.card_rating)
         val b_brewery: TextView = itemView.findViewById(R.id.card_brewery)
         val b_abv: TextView = itemView.findViewById(R.id.card_abv)
-        //androidx.appcompat.widget.AppCompatRatingBar
 
         init {
             itemView.setOnClickListener {
