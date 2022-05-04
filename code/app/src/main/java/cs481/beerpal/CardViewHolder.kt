@@ -1,4 +1,4 @@
-package cs481.beerpal
+/*package cs481.beerpal
 
 import androidx.recyclerview.widget.RecyclerView
 import cs481.beerpal.databinding.SearchCardCellBinding
@@ -18,4 +18,4 @@ class CardViewHolder(
         cardCellBinding.cardAbv.text = abvText
         cardCellBinding.cardBrewery.text = beer.brewery
     }
-}
+}*/

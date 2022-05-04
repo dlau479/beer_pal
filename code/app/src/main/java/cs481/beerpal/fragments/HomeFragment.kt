@@ -41,13 +41,14 @@ class HomeFragment : Fragment() {
     Creates an instance of the Firebase DB,
     Gets data in "Beers" collection,
     Formats data to beer obj,
-    Injects data into cards,
+    Injects data into card,
     Fills cards into HomeFragment's RecyclerView
      */
     private fun getData() {
         val db = FirebaseFirestore.getInstance()
 
-        lateinit var beers:MutableList<Beer>
+        //var beers:MutableList<Beer>
+        var beers: MutableList<Beer> = mutableListOf<Beer>()
 
         val documents = db.collection("beers")
             .get()
@@ -60,9 +61,9 @@ class HomeFragment : Fragment() {
                             title = document.data.getValue("name").toString(),
                             description = document.data.getValue("description").toString(),
                             brewery = document.data.getValue("brewery").toString(),
-                            abv = document.data.getValue("abv") as Double,
-                            rating = 0f,
-                            id = document.data.getValue("id") as Long
+                            abv = document.data.getValue("abv").toString().toDouble(),
+                            rating = document.data.getValue("avg_rating").toString().toFloat(),
+                            id = document.data.getValue("id") as Long,
                         )
                         beers.add(beer)
                     }
