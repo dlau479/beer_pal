@@ -1,8 +1,13 @@
 package cs481.beerpal
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
@@ -24,6 +29,7 @@ class CardAdapter(private val dataList: List<Beer>) : RecyclerView.Adapter<CardA
         holder.b_rating.rating = item.rating
         holder.b_brewery.text = item.brewery
         holder.b_abv.text = item.abv.toString().plus("%")
+        getImageFromUrl(holder.b_picture).execute(item.url)
     }
 
     override fun getItemCount(): Int {
@@ -35,6 +41,7 @@ class CardAdapter(private val dataList: List<Beer>) : RecyclerView.Adapter<CardA
         val b_rating: RatingBar = itemView.findViewById(R.id.card_rating)
         val b_brewery: TextView = itemView.findViewById(R.id.card_brewery)
         val b_abv: TextView = itemView.findViewById(R.id.card_abv)
+        val b_picture: ImageView = itemView.findViewById(R.id.card_thumbnail)
 
         init {
             itemView.setOnClickListener {
@@ -42,5 +49,25 @@ class CardAdapter(private val dataList: List<Beer>) : RecyclerView.Adapter<CardA
             }
         }
     }
+
+    private inner class getImageFromUrl(var imageView: ImageView) : AsyncTask<String, Void, Bitmap?>(){
+        override fun doInBackground(vararg url: String?): Bitmap? {
+            val imageUrl = url[0]
+            var image: Bitmap? = null
+            try{
+                image = BitmapFactory.decodeStream(java.net.URL(imageUrl).openStream())
+            }
+            catch(e:Exception){
+                Log.d("Error downloading image: ", e.message.toString())
+                e.printStackTrace()
+            }
+            return image
+        }
+
+        override fun onPostExecute(result: Bitmap?) {
+            imageView.setImageBitmap(result)
+        }
+    }
+
 }
 

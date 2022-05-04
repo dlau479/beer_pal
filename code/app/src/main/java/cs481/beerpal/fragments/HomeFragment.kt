@@ -62,7 +62,8 @@ class HomeFragment : Fragment() {
                             brewery = document.data.getValue("brewery").toString(),
                             abv = document.data.getValue("abv").toString().toDouble(),
                             rating = document.data.getValue("avg_rating").toString().toFloat(),
-                            id = document.data.getValue("id") as Long
+                            id = document.data.getValue("id") as Long,
+                            url = document.data.getValue("url").toString()
                         )
                         beers.add(beer)
                     }
