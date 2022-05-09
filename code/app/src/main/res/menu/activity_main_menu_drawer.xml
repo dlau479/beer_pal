@@ -28,5 +28,9 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/settings_white"
             android:title="Settings" />
+        <item
+            android:id="@+id/nav_what_i_tried"
+            android:icon="@drawable/whatitried"
+            android:title="What I Tried" />
     </group>
 </menu>
