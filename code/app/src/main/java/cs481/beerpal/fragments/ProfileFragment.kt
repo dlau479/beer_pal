@@ -13,7 +13,9 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
@@ -44,7 +46,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         profile_settings.adapter = ArrayAdapter(view.getContext(), android.R.layout.simple_list_item_1, profile_setting_strings)
 
         profile_picture_area.setOnClickListener {
@@ -96,7 +97,7 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        auth = Firebase.auth
         var profileRef = storageReference.child("users/" + auth.currentUser?.uid + "/profile.jpg")
         profileRef.getDownloadUrl().addOnSuccessListener { uri ->
             Picasso.get().load(uri).into(profile_picture_area);
