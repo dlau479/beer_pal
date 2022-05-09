@@ -9,9 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
-import cs481.beerpal.Beer
-import cs481.beerpal.CardAdapter
-import cs481.beerpal.R
+import cs481.beerpal.*
 import cs481.beerpal.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -33,45 +31,21 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         getData()
     }
-    /*
-    getData() -> void
-    Creates an instance of the Firebase DB,
-    Gets data in "Beers" collection,
-    Formats data to beer obj,
-    Injects data into card,
-    Fills cards into HomeFragment's RecyclerView
-     */
-    private fun getData() {
-        val db = FirebaseFirestore.getInstance()
 
-        var beers: MutableList<Beer> = mutableListOf<Beer>()
 
-        val documents = db.collection("beers")
-            .get()
-            .addOnCompleteListener {
+    fun getData(){
+        BeerRepository.getData(object : BeerRepositoryListener{
+            override fun dataListUpdated() {}
 
-                if(it.isSuccessful) {
-                    for (document in it.result!!) {
-
-                        val beer = Beer(
-                            title = document.data.getValue("name").toString(),
-                            description = document.data.getValue("description").toString(),
-                            brewery = document.data.getValue("brewery").toString(),
-                            abv = document.data.getValue("abv").toString().toDouble(),
-                            rating = document.data.getValue("avg_rating").toString().toFloat(),
-                            id = document.data.getValue("id") as Long
-                        )
-                        beers.add(beer)
-                    }
-                    val recyclerView: RecyclerView = requireView().findViewById(R.id.home_recView)
-                    recyclerView.layoutManager = LinearLayoutManager(context)
-                    recyclerView.adapter = CardAdapter(beers)
-                }
+            override fun dataListResult(beerList: ArrayList<Beer>) {
+                val recyclerView: RecyclerView = requireView().findViewById(R.id.home_recView)
+                recyclerView.layoutManager = LinearLayoutManager(context)
+                recyclerView.adapter = CardAdapter(beerList)
             }
 
+        })
     }
     override fun onDestroyView() {
         super.onDestroyView()

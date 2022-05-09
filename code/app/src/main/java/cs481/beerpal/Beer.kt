@@ -10,5 +10,7 @@ class Beer(
     var rating: Float,
     var brewery: String,
     var abv: Double,
-    var id: Long
+    var id: Long,
+    var url: String,
+    var isOnWishList:  Boolean = false
 )
