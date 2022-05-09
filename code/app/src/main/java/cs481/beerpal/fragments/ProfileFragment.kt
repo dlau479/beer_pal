@@ -2,6 +2,7 @@ package cs481.beerpal.fragments
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -13,6 +14,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 import cs481.beerpal.databinding.FragmentProfileBinding
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -22,6 +26,8 @@ class ProfileFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var fStore: FirebaseFirestore
+    private var storageReference = FirebaseStorage.getInstance().getReference();
+
     //private val profileImage: CircleImageView
 
     private var _binding: FragmentProfileBinding? = null
@@ -62,7 +68,24 @@ class ProfileFragment : Fragment() {
                 var imageUri = data?.getData();
                 profile_picture_area.setImageURI(imageUri)
 
+                if (imageUri != null) {
+                    uploadImageToFirebase(imageUri)
+                };
+
             }
+        }
+    }
+
+    private fun uploadImageToFirebase(imageUri: Uri) {
+        // Upload image to firebase storage
+        var fileRef = storageReference.child("users/" + auth.currentUser?.uid + "/profile.jpg")
+        fileRef.putFile(imageUri).addOnSuccessListener {
+            fileRef.getDownloadUrl().addOnSuccessListener { uri ->
+                Picasso.get().load(uri).into(profile_picture_area)
+                Toast.makeText(context,"Image Uploaded",Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(context,"Image Failed to Upload",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -73,6 +96,11 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        var profileRef = storageReference.child("users/" + auth.currentUser?.uid + "/profile.jpg")
+        profileRef.getDownloadUrl().addOnSuccessListener { uri ->
+            Picasso.get().load(uri).into(profile_picture_area);
+        }
 
         return root
     }
