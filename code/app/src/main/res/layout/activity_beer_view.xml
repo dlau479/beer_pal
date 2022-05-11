@@ -134,12 +134,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/beer_reviews_header">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/beer_reviews_clayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
         <CheckBox
