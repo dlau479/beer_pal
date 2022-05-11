@@ -1,14 +1,16 @@
 package cs481.beerpal
 
-import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import com.google.api.Distribution
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import cs481.beerpal.databinding.ActivityBeerViewBinding
 
@@ -26,6 +28,14 @@ class BeerViewActivity : AppCompatActivity() {
         var bID = intent.getLongExtra(BEER_ID_EXTRA, -1)
 
         fillReviews(bID)
+
+        val fab_back = findViewById<FloatingActionButton>(R.id.fab_back)
+        fab_back.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
     private fun fillViews() {
@@ -54,11 +64,11 @@ class BeerViewActivity : AppCompatActivity() {
         tvRating.rating = bRating
         tvDesc.text = bDesc
         cbWish.isChecked = bWish
+        getImageFromUrl(tvThumbnail).execute(bURL)
     }
 
     //dynamically fills and inflates reviewslayout
     //takes a beer id (for db query)
-    //takes parent reviewslayout and child reviewlayout
     private fun fillReviews(id: Long) {
         var db = FirebaseFirestore.getInstance()
         var reviewList: ArrayList<Review> = ArrayList()
@@ -101,6 +111,24 @@ class BeerViewActivity : AppCompatActivity() {
                     }
                 }
             }
+    }
+    private inner class getImageFromUrl(var imageView: ImageView) : AsyncTask<String, Void, Bitmap?>(){
+        override fun doInBackground(vararg url: String?): Bitmap? {
+            val imageUrl = url[0]
+            var image: Bitmap? = null
+            try{
+                image = BitmapFactory.decodeStream(java.net.URL(imageUrl).openStream())
+            }
+            catch(e:Exception){
+                Log.d("Error downloading image: ", e.message.toString())
+                e.printStackTrace()
+            }
+            return image
+        }
+
+        override fun onPostExecute(result: Bitmap?) {
+            imageView.setImageBitmap(result)
+        }
     }
 
 

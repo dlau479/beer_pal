@@ -147,5 +147,23 @@
             app:layout_constraintEnd_toEndOf="@+id/beer_reviews_header"
             app:layout_constraintTop_toBottomOf="@+id/beer_description" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#673AB7"
+            android:clickable="true"
+            android:foregroundTint="#FFFFFF"
+            android:tint="#FFFFFF"
+            app:backgroundTint="#673AB7"
+            app:fabSize="auto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:maxImageSize="50dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_circle_left_24"
+            app:tint="#FFFFFF" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
