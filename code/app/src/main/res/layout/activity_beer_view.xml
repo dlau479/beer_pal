@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="505dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".BeerViewActivity">
+
+        <ImageView
+            android:id="@+id/beer_thumbnail"
+            android:layout_width="387dp"
+            android:layout_height="274dp"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            android:clickable="false"
+            android:contentDescription="@string/card_content_description_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <TextView
+            android:id="@+id/beer_title"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:clickable="false"
+            android:gravity="bottom|start"
+            android:lines="2"
+            android:paddingStart="15dp"
+            android:text="@string/card_beer_name_placeholder"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/beer_thumbnail"
+            tools:layout_editor_absoluteX="12dp"></TextView>
+
+        <TextView
+            android:id="@+id/beer_description"
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:layout_marginHorizontal="6dp"
+            android:clickable="false"
+            android:gravity="start"
+            android:lines="6"
+            android:paddingStart="6dp"
+            android:paddingLeft="6dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="6dp"
+            android:text="@string/card_beer_description_placeholder"
+            android:textAlignment="textStart"
+            android:textColor="#4A4A4A"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintTop_toBottomOf="@+id/beer_brewery"
+            tools:layout_editor_absoluteX="1dp"></TextView>
+
+        <RatingBar
+            android:id="@+id/beer_rating"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="184dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="4dp"
+            android:clickable="false"
+            android:contentDescription="@string/card_rating_content_description_placeholder"
+            android:foregroundGravity="center"
+            android:indeterminate="false"
+            android:numStars="5"
+            android:progressTint="#FFC107"
+            android:stepSize="0.2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beer_abv" />
+
+        <TextView
+            android:id="@+id/beer_brewery"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:clickable="false"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:paddingTop="2dp"
+            android:text="@string/card_brewery_placeholder"
+            app:layout_constraintTop_toBottomOf="@+id/beer_title"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/beer_abv"
+            android:layout_width="64dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="12dp"
+            android:clickable="false"
+            android:gravity="bottom|right"
+            android:paddingStart="6dp"
+            android:paddingLeft="4dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="6dp"
+            android:text="@string/card_abv_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beer_thumbnail" />
+
+        <TextView
+            android:id="@+id/beer_reviews_header"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:gravity="start|center_vertical"
+            android:paddingStart="15dp"
+            android:text="@string/beer_view_activity_reviews_header"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beer_description" />
+
+        <LinearLayout
+            android:id="@+id/beer_reviews_llayout"
+            android:layout_width="match_parent"
+            android:layout_height="259dp"
+            android:orientation="vertical"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beer_reviews_header">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/beer_reviews_clayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/beer_wishlist"
+            android:layout_width="108dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="4dp"
+            android:checked="false"
+            android:text="@string/beer_view_activity_wishlist"
+            app:layout_constraintBottom_toBottomOf="@+id/beer_reviews_header"
+            app:layout_constraintEnd_toEndOf="@+id/beer_reviews_header"
+            app:layout_constraintTop_toBottomOf="@+id/beer_description" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

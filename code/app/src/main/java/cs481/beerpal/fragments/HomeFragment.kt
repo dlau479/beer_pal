@@ -1,5 +1,6 @@
 package cs481.beerpal.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,10 +42,25 @@ class HomeFragment : Fragment() {
 
             override fun dataListResult(beerList: ArrayList<Beer>) {
                 val recyclerView: RecyclerView = requireView().findViewById(R.id.home_recView)
+                var adapter = CardAdapter(beerList)
                 recyclerView.layoutManager = LinearLayoutManager(context)
-                recyclerView.adapter = CardAdapter(beerList)
-            }
+                recyclerView.adapter = adapter
 
+                adapter.setOnItemClickListener(object: CardAdapter.OnItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        val intent = Intent(activity, BeerViewActivity::class.java)
+                        intent.putExtra(BEER_TITLE_EXTRA, beerList[position].title)
+                        intent.putExtra(BEER_DESC_EXTRA, beerList[position].description)
+                        intent.putExtra(BEER_BREWERY_EXTRA, beerList[position].brewery)
+                        intent.putExtra(BEER_ABV_EXTRA, beerList[position].abv)
+                        intent.putExtra(BEER_RATING_EXTRA, beerList[position].rating)
+                        intent.putExtra(BEER_ID_EXTRA, beerList[position].id)
+                        intent.putExtra(BEER_URL_EXTRA, beerList[position].url)
+
+                        activity?.startActivity(intent)
+                    }
+                })
+            }
         })
     }
     override fun onDestroyView() {
