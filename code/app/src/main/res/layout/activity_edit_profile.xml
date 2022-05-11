@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfile">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_text_input_layout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="125dp">
+        <EditText
+            android:id="@+id/usernameInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:maxLength="36"
+            android:ems="10"
+            android:hint="Username" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/bio_text_input_layout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/username_text_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/username_text_input_layout"
+        android:layout_marginTop="40dp">
+        <EditText
+            android:id="@+id/bioInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:maxLength="50"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:hint="BIO" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/style_choice_text_input_layout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/bio_text_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/bio_text_input_layout"
+        android:layout_marginTop="40dp">
+        <EditText
+            android:id="@+id/styleChoiceInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:hint="Style Choice" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/saveChangesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="165dp"
+        android:text="Save Changes"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/style_choice_text_input_layout" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="165dp"
+        android:text="Cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveChangesButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
