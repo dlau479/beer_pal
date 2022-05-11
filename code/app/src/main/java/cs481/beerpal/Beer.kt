@@ -11,5 +11,6 @@ class Beer(
     var brewery: String,
     var abv: Double,
     var id: Long,
-    var url: String
+    var url: String,
+    var isOnWishList:  Boolean = false
 )

@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_wishlist" />
     <fragment
         android:id="@+id/nav_ratings"
-        android:name="cs481.beerpal.fragments.RatingsFragment"
-        android:label="Ratings"
-        tools:layout="@layout/fragment_ratings" />
+        android:name="cs481.beerpal.fragments.WhatIHaveTriedFragment"
+        android:label="What I Have Tried"
+        tools:layout="@layout/fragment_whatihavetried" />
 </navigation>

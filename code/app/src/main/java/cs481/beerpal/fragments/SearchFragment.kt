@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cs481.beerpal.BeerRepository
-import cs481.beerpal.BeerRepositoryListener
-import cs481.beerpal.CardAdapter
-import cs481.beerpal.R
+import cs481.beerpal.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,6 +82,9 @@ class SearchFragment : Fragment(), BeerRepositoryListener {
         val datalist = BeerRepository.dataList
         Log.e("SearchFragment", "dataListUpdated: ${datalist.size}")
         adapter?.notifyDataSetChanged()
+    }
+
+    override fun dataListResult(BeerList: ArrayList<Beer>) {
     }
 
 }
