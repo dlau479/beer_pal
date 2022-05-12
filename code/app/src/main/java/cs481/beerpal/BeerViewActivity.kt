@@ -11,17 +11,23 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import cs481.beerpal.databinding.ActivityBeerViewBinding
 
 class BeerViewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBeerViewBinding
+    var db = FirebaseFirestore.getInstance()
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBeerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         fillViews()
 
@@ -39,6 +45,8 @@ class BeerViewActivity : AppCompatActivity() {
     }
 
     private fun fillViews() {
+        auth = Firebase.auth
+
         //create references to UI elems
         var tvThumbnail = findViewById<ImageView>(R.id.beer_thumbnail)
         var tvTitle = findViewById<TextView>(R.id.beer_title)
@@ -55,7 +63,7 @@ class BeerViewActivity : AppCompatActivity() {
         val bBrewery = intent.getStringExtra(BEER_BREWERY_EXTRA)
         val bABV = intent.getDoubleExtra(BEER_ABV_EXTRA, 0.0)
         val bURL = intent.getStringExtra(BEER_URL_EXTRA)
-        val bWish = intent.getBooleanExtra(BEER_WISH_EXTRA, false)
+        val bID = intent.getLongExtra(BEER_ID_EXTRA, -1)
 
         //fill UI elems with data
         tvTitle.text = bTitle
@@ -63,14 +71,26 @@ class BeerViewActivity : AppCompatActivity() {
         tvBrewery.text = bBrewery
         tvRating.rating = bRating
         tvDesc.text = bDesc
-        cbWish.isChecked = bWish
         getImageFromUrl(tvThumbnail).execute(bURL)
+
+        //for wishlist, make separate query
+        db.collection("wishlist")
+            .get()
+            .addOnCompleteListener {
+                if(it.isSuccessful) {
+                    for (document in it.result!!) {
+                        if ((document.data.getValue("beer_id") as Long == bID) &&
+                            (auth.currentUser?.email == document.data.getValue("user_email"))) {
+                            cbWish.isChecked = true
+                        }
+                    }
+                }
+            }
     }
 
     //dynamically fills and inflates reviewslayout
     //takes a beer id (for db query)
     private fun fillReviews(id: Long) {
-        var db = FirebaseFirestore.getInstance()
         var reviewList: ArrayList<Review> = ArrayList()
 
         //the linear layout that builds all of the reviews

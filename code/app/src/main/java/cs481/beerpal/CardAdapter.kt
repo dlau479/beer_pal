@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-class CardAdapter(private val dataList: List<Beer>) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
+class CardAdapter(private var dataList: List<Beer>) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
 
     private lateinit var itemListener : OnItemClickListener
 
@@ -45,6 +45,12 @@ class CardAdapter(private val dataList: List<Beer>) : RecyclerView.Adapter<CardA
     override fun getItemCount(): Int {
         return dataList.size
     }
+
+    fun filterList(beers: ArrayList<Beer>) {
+        this.dataList = beers
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(itemView: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
         val b_name: TextView = itemView.findViewById(R.id.card_title)
         val b_desc: TextView = itemView.findViewById(R.id.card_description)
