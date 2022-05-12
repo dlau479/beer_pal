@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import cs481.beerpal.*
 import cs481.beerpal.databinding.FragmentWhatihavetriedBinding
@@ -23,7 +24,7 @@ class WhatIHaveTriedFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     val wishList = mutableListOf<RatingReview>()
-
+    var  temp_useremail :String? = FirebaseAuth.getInstance().currentUser?.email.toString().trim()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,26 +44,28 @@ class WhatIHaveTriedFragment : Fragment() {
     fun getWishList() {
         val db = FirebaseFirestore.getInstance()
 
-
         db.collection("ratings_reviews")
             .get()
             .addOnCompleteListener {
 
                 if (it.isSuccessful) {
                     for (document in it.result!!) {
-                        var userobj = RatingReview(
-                            beer_id = document.data.getValue("beer_id").toString().toInt(),
-                            rating = document.data.getValue("rating").toString().toDouble(),
-                            review = document.data.getValue("review").toString(),
-                            user_email = document.data.getValue("user_email").toString()
-                        )
-                        wishList.add(userobj)
+                        //Log.d("Verbose", "User email "+ temp_useremail+" Docuement "+ document.data.getValue("user_email").toString())
+                        if(temp_useremail.equals(document.data.getValue("user_email").toString().trim())) {
+                         //   Log.d("Verbose", "This is the size "+ temp_useremail)
+                            var userobj = RatingReview(
+                                beer_id = document.data.getValue("beer_id").toString().toInt(),
+                                rating = document.data.getValue("rating").toString().toDouble(),
+                                review = document.data.getValue("review").toString(),
+                                user_email = document.data.getValue("user_email").toString()
+                            )
+                            wishList.add(userobj)
+                        }
                     }
 
                 }
 
                 // Log.d("Verbose","This is the size "+ this.wishList.size.toString())
-
             }
 
 
@@ -77,11 +80,11 @@ class WhatIHaveTriedFragment : Fragment() {
             override fun dataListUpdated() {}
 
             override fun dataListResult(beerList: ArrayList<Beer>) {
-                getWishList()
+                //getWishList()
                 val filteredBeerList: ArrayList<Beer> = ArrayList()
                 beerList.forEach{ beer ->
                     wishList.forEach{ id ->
-                        if (beer.id == id.beer_id.toLong() ){
+                        if (beer.id == id.beer_id.toLong()){
                             filteredBeerList.add(beer)
                        }
                         //Log.d("Verbose","This is the "+id)
