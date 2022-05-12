@@ -14,8 +14,8 @@
             android:title="Wishlist" />
         <item
             android:id="@+id/nav_ratings"
-            android:icon="@drawable/thumb_up_white"
-            android:title="Ratings" />
+            android:icon="@drawable/whatitried"
+            android:title="What I've Tried" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/perm_identity_white"

@@ -18,6 +18,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_main_menu">MainMenu</string>
+    <string name="edit_profile">Edit profile</string>
 
     <string name="card_beer_description_placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="card_beer_name_placeholder">Beer Name</string>

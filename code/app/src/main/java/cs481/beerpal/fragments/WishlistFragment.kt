@@ -1,6 +1,5 @@
 package cs481.beerpal.fragments
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,18 @@ import cs481.beerpal.model.BeerItem
 import cs481.beerpal.recyclerview.WishListRVAdapter
 import cs481.beerpal.recyclerview.WishListRVListener
 import kotlinx.android.synthetic.main.fragment_wishlist.view.*
+import android.app.Activity
+import android.content.ContentValues.TAG
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+
 
 class WishlistFragment : Fragment(),WishListRVListener {
 
@@ -42,6 +53,9 @@ class WishlistFragment : Fragment(),WishListRVListener {
     }
 
     fun getWishList(){
+
+
+
         if(wishList.isEmpty()){
             wishList.add(3)
             wishList.add(4)
