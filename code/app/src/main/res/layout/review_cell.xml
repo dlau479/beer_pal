@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/beer_reviews_clayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    >
+    <RatingBar
+        android:id="@+id/beer_reviews_rating"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_width="184dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="1dp"
+        android:clickable="false"
+        android:contentDescription="@string/card_rating_content_description_placeholder"
+        android:foregroundGravity="center"
+        android:indeterminate="false"
+        android:numStars="5"
+        android:progressTint="#FFC107"
+        android:stepSize="0.2"
+        app:layout_constraintBottom_toBottomOf="@+id/beer_reviews_uname"
+        app:layout_constraintEnd_toEndOf="@+id/beer_reviews_uname" />
+
+    <TextView
+        android:id="@+id/beer_reviews_uname"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:clickable="false"
+        android:gravity="center_vertical"
+        android:paddingStart="15dp"
+        android:paddingTop="2dp"
+        android:text="@string/beer_view_reviews_name_placeholder"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <TextView
+        android:id="@+id/beer_reviews_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="5dp"
+        android:text="@string/beer_view_reviews_description_placeholder"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@+id/beer_reviews_uname"
+        tools:layout_editor_absoluteX="47dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

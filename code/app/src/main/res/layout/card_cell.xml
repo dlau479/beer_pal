@@ -5,6 +5,7 @@
     android:id="@+id/card_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clickable="false"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:clickable="true"
+        android:clickable="false"
         app:cardCornerRadius="15dp"
         app:cardElevation="7dp">
 
@@ -20,6 +21,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:orientation="vertical">
 
             <ImageView
@@ -27,6 +29,7 @@
                 android:layout_width="390dp"
                 android:layout_height="137dp"
                 android:adjustViewBounds="true"
+                android:clickable="false"
                 android:contentDescription="@string/card_content_description_placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -37,6 +40,7 @@
                 android:id="@+id/card_title"
                 android:layout_width="174dp"
                 android:layout_height="41dp"
+                android:clickable="false"
                 android:gravity="center|start"
                 android:lines="2"
                 android:paddingStart="6dp"
@@ -57,6 +61,8 @@
                 android:id="@+id/card_description"
                 android:layout_width="380dp"
                 android:layout_height="127dp"
+                android:layout_marginHorizontal="6dp"
+                android:clickable="false"
                 android:gravity="start"
                 android:lines="6"
                 android:paddingStart="6dp"
@@ -68,7 +74,6 @@
                 android:textColor="#4A4A4A"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                android:layout_marginHorizontal="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_rating"></TextView>
@@ -79,6 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_marginStart="2dp"
+                android:clickable="false"
                 android:contentDescription="@string/card_rating_content_description_placeholder"
                 android:foregroundGravity="center"
                 android:indeterminate="false"
@@ -93,6 +99,7 @@
                 android:id="@+id/card_brewery"
                 android:layout_width="173dp"
                 android:layout_height="37dp"
+                android:clickable="false"
                 android:paddingStart="6dp"
                 android:paddingLeft="4dp"
                 android:paddingTop="2dp"
@@ -105,6 +112,7 @@
                 android:id="@+id/card_abv"
                 android:layout_width="64dp"
                 android:layout_height="42dp"
+                android:clickable="false"
                 android:gravity="center"
                 android:paddingStart="6dp"
                 android:paddingLeft="4dp"

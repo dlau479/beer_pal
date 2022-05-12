@@ -26,4 +26,10 @@
     <string name="card_abv_placeholder">x.x%</string>
     <string name="card_content_description_placeholder">Content Description</string>
     <string name="card_rating_content_description_placeholder">Content Description</string>
+
+    <string name="beer_view_activity_reviews_header">Reviews</string>
+    <string name="beer_view_activity_wishlist">Wishlist</string>
+
+    <string name="beer_view_reviews_name_placeholder">JohnSmith123</string>
+    <string name="beer_view_reviews_description_placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 </resources>

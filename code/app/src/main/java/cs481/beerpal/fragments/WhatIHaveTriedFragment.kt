@@ -24,7 +24,9 @@ class WhatIHaveTriedFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     val wishList = mutableListOf<RatingReview>()
-    var  temp_useremail :String? = FirebaseAuth.getInstance().currentUser?.email.toString().trim()
+    var  temp_useremail :String? = FirebaseAuth.getInstance().currentUser?.email.toString()
+    val filteredBeerList: ArrayList<Beer> = ArrayList()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,6 +40,13 @@ class WhatIHaveTriedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val recyclerView: RecyclerView = requireView().findViewById(R.id.tried_recView)
+        val adapter = CardAdapter(filteredBeerList)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter.setOnItemClickListener(object : CardAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int) {}//do nothing until assigned
+        })
+        recyclerView.adapter = adapter
         getData()
     }
 
@@ -51,7 +60,7 @@ class WhatIHaveTriedFragment : Fragment() {
                 if (it.isSuccessful) {
                     for (document in it.result!!) {
                         //Log.d("Verbose", "User email "+ temp_useremail+" Docuement "+ document.data.getValue("user_email").toString())
-                        if(temp_useremail.equals(document.data.getValue("user_email").toString().trim())) {
+                        if(temp_useremail.equals(document.data.getValue("user_email").toString())) {
                          //   Log.d("Verbose", "This is the size "+ temp_useremail)
                             var userobj = RatingReview(
                                 beer_id = document.data.getValue("beer_id").toString().toInt(),
@@ -80,8 +89,8 @@ class WhatIHaveTriedFragment : Fragment() {
             override fun dataListUpdated() {}
 
             override fun dataListResult(beerList: ArrayList<Beer>) {
-                //getWishList()
-                val filteredBeerList: ArrayList<Beer> = ArrayList()
+                getWishList()
+
                 beerList.forEach{ beer ->
                     wishList.forEach{ id ->
                         if (beer.id == id.beer_id.toLong()){
@@ -93,9 +102,13 @@ class WhatIHaveTriedFragment : Fragment() {
                 }
                 Log.d("Verbose","This is the size "+wishList.size.toString())
 
-                val recyclerView: RecyclerView = requireView().findViewById(R.id.home_recView)
+                val recyclerView: RecyclerView = requireView().findViewById(R.id.tried_recView)
+                val adapter = CardAdapter(filteredBeerList)
                 recyclerView.layoutManager = LinearLayoutManager(context)
-                recyclerView.adapter = CardAdapter(filteredBeerList)
+                adapter.setOnItemClickListener(object : CardAdapter.OnItemClickListener{
+                    override fun onItemClick(position: Int) {}//do nothing until assigned
+                })
+                recyclerView.adapter = adapter
             }
 
         })

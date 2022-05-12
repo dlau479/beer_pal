@@ -31,7 +31,7 @@ class WishlistFragment : Fragment(),WishListRVListener {
 
     private var _binding: FragmentWishlistBinding? = null
     private var wishList = ArrayList<Long>()
-
+    val filteredBeerList: ArrayList<Beer> = ArrayList()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -49,6 +49,13 @@ class WishlistFragment : Fragment(),WishListRVListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val recyclerView: RecyclerView = requireView().findViewById(R.id.wishlist_recView)
+        val adapter = CardAdapter(filteredBeerList)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter.setOnItemClickListener(object : CardAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int) {}//do nothing until assigned
+        })
+        recyclerView.adapter = adapter
         getData()
     }
 
@@ -69,7 +76,7 @@ class WishlistFragment : Fragment(),WishListRVListener {
 
             override fun dataListResult(beerList: ArrayList<Beer>) {
                 getWishList()
-                val filteredBeerList: ArrayList<Beer> = ArrayList()
+
                 beerList.forEach{ beer ->
                     wishList.forEach{ id ->
                         if (beer.id == id ){
@@ -77,11 +84,32 @@ class WishlistFragment : Fragment(),WishListRVListener {
                         }
                     }
                 }
-
-
-                val recyclerView: RecyclerView = requireView().findViewById(R.id.home_recView)
+                val recyclerView: RecyclerView = requireView().findViewById(R.id.wishlist_recView)
+                val adapter = CardAdapter(filteredBeerList)
                 recyclerView.layoutManager = LinearLayoutManager(context)
-                recyclerView.adapter = CardAdapter(filteredBeerList)
+
+                adapter.setOnItemClickListener(object: CardAdapter.OnItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        val selectedId = filteredBeerList[position].id
+                        var beerListPos = -1
+                        beerList.forEachIndexed { index, beer ->
+                            if(beer.id == selectedId){
+                                beerListPos = index
+                            }
+                        }
+                        val intent = Intent(activity, BeerViewActivity::class.java)
+                        intent.putExtra(BEER_TITLE_EXTRA, beerList[beerListPos].title)
+                        intent.putExtra(BEER_DESC_EXTRA, beerList[beerListPos].description)
+                        intent.putExtra(BEER_BREWERY_EXTRA, beerList[beerListPos].brewery)
+                        intent.putExtra(BEER_ABV_EXTRA, beerList[beerListPos].abv)
+                        intent.putExtra(BEER_RATING_EXTRA, beerList[beerListPos].rating)
+                        intent.putExtra(BEER_ID_EXTRA, beerList[beerListPos].id)
+                        intent.putExtra(BEER_URL_EXTRA, beerList[beerListPos].url)
+
+                        activity?.startActivity(intent)
+                    }
+                })
+                recyclerView.adapter = adapter
             }
 
         })
