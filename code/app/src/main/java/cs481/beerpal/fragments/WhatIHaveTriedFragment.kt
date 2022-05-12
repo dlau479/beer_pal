@@ -23,6 +23,7 @@ class WhatIHaveTriedFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     val wishList = mutableListOf<RatingReview>()
+    val filteredBeerList: ArrayList<Beer> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +38,13 @@ class WhatIHaveTriedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val recyclerView: RecyclerView = requireView().findViewById(R.id.tried_recView)
+        val adapter = CardAdapter(filteredBeerList)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter.setOnItemClickListener(object : CardAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int) {}//do nothing until assigned
+        })
+        recyclerView.adapter = adapter
         getData()
     }
 
@@ -78,7 +86,7 @@ class WhatIHaveTriedFragment : Fragment() {
 
             override fun dataListResult(beerList: ArrayList<Beer>) {
                 getWishList()
-                val filteredBeerList: ArrayList<Beer> = ArrayList()
+
                 beerList.forEach{ beer ->
                     wishList.forEach{ id ->
                         if (beer.id == id.beer_id.toLong() ){
@@ -90,9 +98,13 @@ class WhatIHaveTriedFragment : Fragment() {
                 }
                 Log.d("Verbose","This is the size "+wishList.size.toString())
 
-                val recyclerView: RecyclerView = requireView().findViewById(R.id.home_recView)
+                val recyclerView: RecyclerView = requireView().findViewById(R.id.tried_recView)
+                val adapter = CardAdapter(filteredBeerList)
                 recyclerView.layoutManager = LinearLayoutManager(context)
-                recyclerView.adapter = CardAdapter(filteredBeerList)
+                adapter.setOnItemClickListener(object : CardAdapter.OnItemClickListener{
+                    override fun onItemClick(position: Int) {}//do nothing until assigned
+                })
+                recyclerView.adapter = adapter
             }
 
         })

@@ -1,5 +1,6 @@
 package cs481.beerpal
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -16,6 +17,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import cs481.beerpal.databinding.ActivityBeerViewBinding
+
 
 class BeerViewActivity : AppCompatActivity() {
 
